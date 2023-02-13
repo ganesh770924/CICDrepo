@@ -1,2 +1,1 @@
-# CICDrepo
-CICDrepo
+# devops-automation
