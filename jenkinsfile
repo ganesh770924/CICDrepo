@@ -1,4 +1,4 @@
-@Library('ganesh_lib') _
+@Library('ganeshlib')_
 pipeline{
     agent any
     tools{
