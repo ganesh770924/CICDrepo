@@ -1,0 +1,65 @@
+@Library('ganesh_lib') _
+pipeline{
+    agent any
+    tools{
+        maven "maven3"
+        
+    }
+    environment{
+        SONARSERVER ="sonar"
+        SONARSCANNER = "sonar"
+      
+            }
+    stages{
+        stage('checkout'){
+            steps{
+                script{
+                    pipeline.mycheckout()
+                }
+            }
+        }
+        stage('Build'){
+            steps{
+                script{
+                    pipeline.Build()
+                }
+            }
+        }
+        stage('Junit test'){
+            steps{
+                script{
+                    pipeline.test()
+                }
+            }
+        }
+        stage('CODE ANALYSIS with SONARQUBE'){
+             environment{
+               scannerHome = tool "${SONARSCANNER}"
+      
+            }
+            steps{
+                withSonarQubeEnv("${SONARSERVER}"){
+                script{
+                    pipeline.sonarscanner()
+                }
+              }
+            }
+        }
+        stage('Upload artifact'){
+            steps{
+                script{
+                    pipeline.upartifacts()
+                }
+            }
+        }
+        
+        stage('Upload Deploy'){
+            steps{
+                script{
+                    pipeline.deploy()
+                }
+            }
+        }
+    }
+        }
+    
