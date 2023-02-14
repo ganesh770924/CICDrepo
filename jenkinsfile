@@ -9,8 +9,8 @@ pipeline{
         
     }
     environment{
-        SONARSERVER ="sonar"
-        SONARSCANNER = "sonar"
+        SONARSERVER ="mysonarqube"
+        SONARSCANNER = "mysonarqube"
       
             }
     stages{
