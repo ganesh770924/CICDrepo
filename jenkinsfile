@@ -24,14 +24,14 @@ pipeline{
         stage('Build'){
             steps{
                 script{
-                    pipeline.Build()
+                   cicd.Build()
                 }
             }
         }
         stage('Junit test'){
             steps{
                 script{
-                    pipeline.test()
+                    cicd.test()
                 }
             }
         }
@@ -43,7 +43,7 @@ pipeline{
             steps{
                 withSonarQubeEnv("${SONARSERVER}"){
                 script{
-                    pipeline.sonarscanner()
+                    cicd.sonarscanner()
                 }
               }
             }
@@ -51,7 +51,7 @@ pipeline{
         stage('Upload artifact'){
             steps{
                 script{
-                    pipeline.upartifacts()
+                    cicd.upartifacts()
                 }
             }
         }
@@ -59,7 +59,7 @@ pipeline{
         stage('Upload Deploy'){
             steps{
                 script{
-                    pipeline.deploy()
+                    cicd.deploy()
                 }
             }
         }
